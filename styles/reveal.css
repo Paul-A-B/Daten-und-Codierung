@@ -1,0 +1,38 @@
+#reveal-container {
+  position: relative;
+}
+
+#reveal-cursor {
+  position: fixed;
+  width: 7.5em;
+  height: 7.5em;
+  top: -100%;
+  background: rgba(var(--color-text-light), 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s, width 0.5s, height 0.5s;
+  filter: blur(5px);
+}
+
+#reveal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#reveal-grid span {
+  justify-self: center;
+  align-self: center;
+  padding: 1.5em 0;
+}
+
+#reveal-container span {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+#reveal-container p span {
+  user-select: none;
+}

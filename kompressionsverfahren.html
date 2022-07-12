@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/slider.css" />
+    <link rel="stylesheet" href="styles/huffman.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <title>Daten und Codierung - Kompressionsverfahren</title>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon" />
+
+    <script defer src="scripts/navigation.js"></script>
+    <script defer src="scripts/svgUtil.js"></script>
+    <script defer src="scripts/huffman.js"></script>
+    <script defer src="scripts/slider.js"></script>
+  </head>
+  <body>
+    <div id="hero-fade">
+      <img id="hero-img" src="img/programming.jpg" alt="" />
+      <div id="hero-background"></div>
+    </div>
+
+    <main>
+      <section id="hero-container">
+        <h1>Kompressionsverfahren</h1>
+        <p>
+          Bei der Kompression von Informationen gibt es zwei Herangehensweisen,
+          die verlustfreie und die verlustbehaftete. <br />
+          Warum man &uuml;ber Datenverlust hinnimmt und welche spezifischen
+          Verfahren in die Kategorien fallen, erkl&auml;ren wir jetzt.
+        </p>
+        <a
+          class="material-icons md-48 arrowDown"
+          href="#Verlustfreie_Datenkompression"
+          >expand_more</a
+        >
+      </section>
+
+      <header id="sticky-header">
+        <input type="checkbox" id="nav-toggle" />
+        <a href="index.html">Daten und Codierung</a>
+        <nav>
+          <a href="#Verlustfreie_Datenkompression"
+            >Verlustfreie Datenkompression</a
+          >
+          <a href="#Verlustbehaftete_Datenkompression"
+            >Verlustbehaftete Datenkompression</a
+          >
+        </nav>
+        <label for="nav-toggle" id="nav-toggle-icon"
+          ><span class="material-icons">menu</span></label
+        >
+      </header>
+
+      <section class="section-primary-dark" id="Verlustfreie_Datenkompression">
+        <h2 class="primary-fade">Verlustfreie Datenkompression</h2>
+        <div class="grid">
+          <p class="item">
+            Bei der verlustfreien Kompression geht es darum, den
+            Informationsinhalt so zu reduzieren, dass man ihn bei Reproduktion
+            exakt wiederherstellen kann. Dabei werden redundante
+            Datenbest&auml;nde komprimiert, ohne Informationen zu ver&auml;ndern
+            oder zu entfernen. Die Kompression erfolgt durch Datenreduktion und
+            ist am h&auml;ufigsten in Textkompression, Audiokompression und
+            Bildkompression vertreten.
+          </p>
+          <dl class="item">
+            <dt>Bekannte und wichtige Verfahren:</dt>
+            <dd>ZIP-Dateiformat</dd>
+            <dd>RAR-Dateiformat</dd>
+            <dd>LZW-Algorithmus</dd>
+          </dl>
+          <p class="item item-long-horizontal">
+            Die HUFFMAN-Codierung ist eine Quellencodierung f&uuml;r Text- und
+            Bildkompression und basiert auf Redundanz der
+            Zeichenh&auml;ufigkeit, zum Beispiel hat man in einem Text
+            Buchstaben wie &quot;e&quot;, die h&auml;ufig vorkommen und diese
+            werden durch kurze Signalcodes ersetzt (3 Bit &quot;short
+            hand&quot;), wobei man 5 Bit spart, Buchstaben wie &quot;y&quot;,
+            die etwas seltener vorkommen, werden dann durch etwas l&auml;ngere
+            Signalcodes ersetzt. Dies wird genauso auf Farben angewandt, Farben
+            wie Gr&uuml;n kommen h&auml;ufiger vor als Farben wie Gelb, dadurch
+            ist die HUFFMAN-Codierung variable und kann anhand der
+            H&auml;ufigkeit festgelegt werden.
+          </p>
+          <figure class="item item-long-horizontal">
+            <img
+              src="https://www.itwissen.info/lex-images/Beispiel-einer-Huffman-Codierung.png"
+              alt=""
+            />
+            <figcaption>
+              Beispiel einer Huffman-Codierung auf
+              <a
+                href="https://www.itwissen.info/Huffman-Codierung-Huffman-encoding.html"
+                >ITWissen</a
+              >
+            </figcaption>
+          </figure>
+
+          <p class="item item-long-horizontal">
+            Bei der Laufl&auml;ngencodierung haben die codierten Ziffern,
+            Zeichen und Buchstaben eine unterschiedliche Anzahl an Bits und da
+            die L&auml;nge der codierten Zeichen unterschiedlich ist,
+            hei&szlig;t die Codierung Laufl&auml;ngencodierung. Es geht hierbei
+            darum, eine Folge von gleichen Zahlen, Zeichen oder Buchstaben durch
+            ein einziges Symbol zu ersetzen (RUN), hierbei k&ouml;nnen viele
+            Buchstaben mit 2 Bytes ersetzt werden. Die Laufl&auml;ngencodierung
+            beseitigt Redundanzen in Form von Wiederholungen und eignet sich
+            besonders f&uuml;r Grafiken.
+          </p>
+          <figure class="item item-long-horizontal">
+            <img
+              src="https://www.itwissen.info/lex-images/RLE-Kompression-Beispiele-mit-geringer-und-hoeherer-Effizienz.png"
+              alt=""
+            />
+            <figcaption>
+              Beispiel unterschiedlicher Effizienzraten bei Lauflängencodierung
+              auf
+              <a
+                href="https://www.itwissen.info/Lauflaengencodierung-run-length-encoding-RLE.html"
+                >ITWissen</a
+              >
+            </figcaption>
+          </figure>
+          <textarea name="" id="huffman-input" cols="30" rows="10">
+Ein Beispiel eines Huffman Baumes</textarea
+          >
+          <svg
+            class="item item-long-horizontal no-background"
+            id="huffman-display"
+            xmlns="http://www.w3.org/2000/svg"
+          ></svg>
+          <textarea
+            name=""
+            id="binary-conversion"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <textarea name="" id="huffman-output" cols="30" rows="10"></textarea>
+          <table class="item item-long-horizontal" id="huffman-stats">
+            <tr>
+              <th>Zeichen</th>
+              <th>H&auml;ufigkeit</th>
+              <th>Codierung</th>
+              <th>Speichergr&ouml;&szlig;e</th>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <img
+        class="spacer"
+        src="img/spacer/after-section-primary-dark.svg"
+        alt=""
+      />
+
+      <section class="section-secondary" id="Verlustbehaftete_Datenkompression">
+        <h2 class="tertiary-fade heading-right">
+          Verlustbehaftete Datenkompression
+        </h2>
+        <div class="grid">
+          <p class="item item-long-horizontal">
+            Bei der verlustbehafteten Datenkompression wird die Gr&ouml;&szlig;e
+            einer Datei verringert, wobei Informationen, welche in der Datei
+            vorhanden sind verloren gehen. Die &Auml;nderungen sind meist in
+            einem Ma&szlig;e vorgenommen, indem sie nicht die Qualit&auml;t des
+            Inhaltes beeintr&auml;chtigen. Einige der bekanntesten komprimierten
+            Dateitypen sind JPEG, MP3 und MP4.
+          </p>
+          <p class="item">
+            Bei dem JPEG Format werden in der Originaldatei gro&szlig;e Mengen
+            an Pixeln, welche eine sehr &Auml;hnliche Farbe haben zu einer
+            Einzelnen Farbe ge&auml;ndert. Ein gutes Beispiel daf&uuml;r ist ein
+            blauer Himmel. Hier gibt es sehr viele verschiedene Blaut&ouml;ne,
+            welche man kaum voneinander unterscheiden kann. Somit werden sie zu
+            weniger Blaut&ouml;nen zusammengefasst und dadurch k&ouml;nnen diese
+            per verlustfreien Kompressionsverfahren effizienter gespeichert
+            werden.
+          </p>
+          <p class="item">
+            Bei den MP3 Dateien werden von der Originaldatei T&ouml;ne entfernt,
+            welche ein Mensch nicht h&ouml;ren kann. Zudem werden sehr
+            &auml;hnlich klingende T&ouml;ne hier auch zusammengefasst. Da ein
+            Ton ein durchg&auml;ngiges Ger&auml;usch ist, muss ein passender
+            Intervall, in dem die T&ouml;ne gespeichert werden gew&auml;hlt
+            werden, da ein Ton in einer Sekunde theoretisch unendlich viel
+            Speicherplatz br&auml;uchte.
+          </p>
+          <p class="item item-long-horizontal">
+            Das MP4 Format ist etwas komplexer als JPEG, da hier ein Video und
+            damit auch der zeitliche Aspekt untersucht werden muss. Nehmen wir
+            zur Erkl&auml;rung an, dass wir in einem Video mit 20 Frames
+            komprimieren. In diesem Abschnitt des Videos sind 10 Frames gleich.
+            Deshalb muss dies nur einmal abgespeichert werden. Die einzelnen
+            Frames werden wie bei JPEG komprimiert, wobei man hier noch einmal
+            pr&uuml;ft, ob es in den Frames ein durchgehend gleiches Element,
+            zum Beispiel ein schwarzes Quadrat, enthalten ist. Wenn dieses
+            Quadrat in mehreren Frames auftaucht, wird es auch nur einmal
+            gespeichert und auf mehrere Frames angewandt. Zuletzt wird die
+            gleiche Methode wie bei JPEG bei den noch nicht komprimierten Teilen
+            genutzt
+          </p>
+
+          <figure style="width: 100%" class="item item-long-horizontal">
+            <div
+              style="border-radius: 0"
+              class="item item-long-horizontal"
+              id="slider-container"
+            >
+              <img
+                src="img/kompressionsbeispiel1.jpg"
+                id="slider-background-img"
+              />
+              <img
+                src="img/kompressionsbeispiel2.jpg"
+                id="slider-foreground-img"
+              />
+              <input type="range" min="0" max="100" value="50" id="slider" />
+            </div>
+            <figcaption>
+              Bild von
+              <a
+                href="https://unsplash.com/@8moments?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                >Simon Berger</a
+              >
+              auf
+              <a
+                href="https://unsplash.com/s/photos/mountains?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                >Unsplash</a
+              >
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <img class="spacer" src="img/spacer/after-section-secondary.svg" alt="" />
+
+      <section id="Aufgaben" class="section-primary-light">
+        <h2 class="primary-fade">Aufgaben</h2>
+        <dl class="item">
+          <dt>Verlustfreie Datenkompression</dt>
+          <dd>
+            <ol>
+              <li>
+                Komprimiere die Ente wie in den oberen Beispielen! Hinweiß: das
+                Feld ist 10x10 Pixel groß Weiß=w; Gelb=g; Schwarz=s; Rosa=r,
+                Orange=o; Rot=f;
+              </li>
+            </ol>
+            <figure style="margin: auto" class="item item-long-horizontal">
+              <img src="img/ente.png" alt="" />
+              <figcaption>Eine kleine Pixel-Ente (Künstler: Lucas)</figcaption>
+            </figure>
+          </dd>
+          <dt>Lösung</dt>
+          <dd>
+            <p id="solution">
+              2w, 6g, 2w<br />
+              1w, 2g, 1s, 2g, 1s, 2g, 1w,<br />
+              1w, 1g, 1r, 2g, 1o, 1g, 1r, 1g, 1w, <br />
+              1w, 3g, 2o, 3g, 1w<br />
+              2w, 6g, 2w<br />
+              10g<br />
+              10g<br />
+              1w, 8g, 1w<br />
+              2w, 6g, 2w<br />
+              3w, 1f, 2w, 1f, 3w
+            </p>
+          </dd>
+
+          <dt>Verlustbehaftete Datenkompression</dt>
+          <dd>
+            <ol>
+              <li>
+                F&uuml;ge ein Bild von deinem Computer in ein Programm wie
+                IrfanView ein und exportiere es als .jpg in verschiedenen
+                Komprimierungsraten. Ab wann ist der Unterschied an
+                Qualit&auml;t deutlich sichtbar?
+              </li>
+              <li>
+                Fertige selbst einen Huffman-Baum von der Buchstabenfolge:
+                "ABEDBADDEBAABBBCEECA" (insgesamt 20 Zeichen) an und
+                &uuml;berpr&uuml;fe dein Ergebnis mit unserem Huffman-Generator.
+                (Beachte, dass Zeichen mit einer gleichen H&auml;ufigkeit
+                vertauscht angeordnet werden kann.) Wie viel Speicherplatz hast
+                du dadurch gespart?
+              </li>
+            </ol>
+          </dd>
+        </dl>
+      </section>
+
+      <img
+        class="spacer"
+        src="img/spacer/after-section-primary-light.svg"
+        alt=""
+      />
+
+      <section id="Quellen" class="section-tertiary">
+        <h2 class="secondary-fade heading-right">Quellen</h2>
+        <dl class="item">
+          <dt>Hero Image</dt>
+          <dd>
+            Bild von
+            <a href="https://libreshot.com/about-libreshot/">Martin Vorel</a>
+            auf
+            <a href="https://libreshot.com/programming/">LibreShot</a>
+            | leicht verändert
+          </dd>
+
+          <dt>Verlustfreie Datenkompression</dt>
+          <dd>
+            <a
+              href="https://lehre.idh.uni-koeln.de/lehrveranstaltungen/sosem20/it-grundlagen-schule/digitale-bilder/komprimierungsverfahren-1/verlustfreie-kompression-von-bildern/"
+              >Verlustfreie Verfahren (Universit&auml;t zu K&ouml;ln)</a
+            >
+          </dd>
+          <dd>
+            <a
+              href="https://referate.mezdata.de/sj2002/bildformate_margarita-isjurowa/ausarbeitung/lauflaengenkodierung.htm"
+              >Laufl&auml;ngencodierung (Margarita Isjurowa)</a
+            >
+          </dd>
+          <dd>
+            <a
+              href="https://www.itwissen.info/Huffman-Codierung-Huffman-encoding.html"
+              >Huffman-Codierung (ITWissen)</a
+            >
+          </dd>
+          <dd>
+            <a
+              href="https://www.itwissen.info/Lauflaengencodierung-run-length-encoding-RLE.html"
+              >Laufl&auml;ngencodierung (ITWissen)</a
+            >
+          </dd>
+
+          <dt>Verlustbehaftete Datenkompression</dt>
+          <dd>
+            <a href="https://youtu.be/HNPqWaSEMJI"
+              >How File Compression Works (Youtube: Mental Outlaw)</a
+            >
+          </dd>
+          <dd>
+            <a href="https://de.wikipedia.org/wiki/Datenkompression"
+              >Datenkompression (Wikipedia)</a
+            >
+          </dd>
+          <dd>
+            <a href="https://youtu.be/vU49K04z9-s"
+              >Kein Internet ohne Datenkomprimierung! Wie funktioniert Zip, MP4
+              Filme, JPEG Bilder, MP3 Musik ? (Youtube: Rene F&uuml;rst)</a
+            >
+          </dd>
+          <dd>
+            <a
+              href="https://erasmus-reinhold-gymnasium.de/info/komprimierung/kompression.html"
+              >Datenkompression (Erasmus-Reinhold-Gymnasium)</a
+            >
+          </dd>
+          <dd>
+            <a href="https://de.wikipedia.org/wiki/JPEG">JPEG (Wikipedia)</a>
+          </dd>
+          <dd>
+            <a href="https://de.wikipedia.org/wiki/MP4">MP4 (Wikipedia)</a>
+          </dd>
+          <dd>
+            <a href="https://de.wikipedia.org/wiki/MP3">MP3 (Wikipedia)</a>
+          </dd>
+        </dl>
+      </section>
+
+      <footer>
+        <nav>
+          <a href="index.html">Startseite</a>
+          <a href="impressum.html">Impressum</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

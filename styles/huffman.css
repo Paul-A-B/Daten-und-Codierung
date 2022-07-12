@@ -1,0 +1,29 @@
+#huffman-display {
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  #huffman-display {
+    aspect-ratio: 2 / 1;
+  }
+}
+
+#huffman-display text {
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+#huffman-display text::selection {
+  background: rgb(var(--color-secondary)) !important;
+}
+
+#solution {
+  background-color: rgb(var(--color-background-dark));
+  color: rgb(var(--color-text-dark));
+  transition: all 0.5s;
+}
+
+#solution:hover {
+  background-color: inherit;
+  color: inherit;
+}

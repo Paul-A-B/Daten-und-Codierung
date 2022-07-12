@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <title>Daten und Codierung - Bin&auml;rdarstellung von Bildern</title>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon" />
+
+    <script defer src="scripts/navigation.js"></script>
+    <script defer src="scripts/svgUtil.js"></script>
+    <script defer src="scripts/bitmap.js"></script>
+  </head>
+  <body>
+    <div id="hero-fade">
+      <img
+        id="hero-img"
+        src="https://libreshot.com/wp-content/uploads/2016/09/binary-code.jpg"
+        alt=""
+      />
+      <div id="hero-background"></div>
+    </div>
+
+    <main>
+      <section id="hero-container">
+        <h1>Bin&auml;rdarstellung von Bildern</h1>
+        <p>
+          Heutzutage tr&auml;gt ein jeder durch sein Handy zahlreiche Fotos mit
+          sich herum, doch auch diese m&uuml;ssen irgendwie dargestellt werden.
+          Bilder bestehen aus verschiedenen Bildpunkten, die Pixel genannt
+          werden.
+        </p>
+        <a class="material-icons md-48 arrowDown" href="#Portable_BitMap"
+          >expand_more</a
+        >
+      </section>
+
+      <header id="sticky-header">
+        <input type="checkbox" id="nav-toggle" />
+        <a href="index.html">Daten und Codierung</a>
+        <nav>
+          <a href="#Portable_BitMap">Portable BitMap</a>
+          <a href="#Portable_GrayMap">Portable GrayMap</a>
+          <a href="#Farbmischung">Farbmischung</a>
+          <a href="#Portable_PixMap">Portable PixMap</a>
+        </nav>
+        <label for="nav-toggle" id="nav-toggle-icon"
+          ><span class="material-icons">menu</span></label
+        >
+      </header>
+
+      <section class="section-primary-dark" id="Portable_BitMap">
+        <h2 class="primary-fade">Portable BitMap</h2>
+        <div class="grid">
+          <p class="item item-long-horizontal">
+            Ein sehr einfaches Datenformat f&uuml;r Schwarz-Wei&szlig;-Bilder
+            ist das Portable-Bitmap-Format (kurz PBM). <br />
+            Dieses Format gibt es in zwei Versionen, einer ASCII- und einer
+            Bin&auml;rversion. Der folgende Quelltext zeigt, wie die Daten eines
+            Bildes im ASCII-PBM-Format dargestellt werden. Man sieht hier, wie
+            Stellen mit einer Null wei&szlig; und Stellen mit einer Eins schwarz
+            sind.
+          </p>
+          <div class="item item-left flex-center">
+            <svg
+              class="item item-long-horizontal"
+              id="bitmap-example-p1"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <textarea
+              readonly="true"
+              style="resize: none"
+              cols="28"
+              rows="10"
+              id="bitmap-input-example-p1"
+            >
+P1
+15 8
+0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 1 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 0 1 1 1 1 0 0 0 0 0 0 0
+0 0 0 1 1 0 1 1 0 0 0 0 0 0 0
+0 0 1 1 1 1 1 1 1 1 0 0 0 0 0
+0 1 0 0 0 1 1 1 0 0 1 0 0 0 1
+1 1 0 0 0 1 1 1 0 0 1 1 0 0 0</textarea
+            >
+          </div>
+          <p class="item">
+            Die erste Zeile, "P1", kennzeichnet das PBM-Format in der
+            ASCII-Version. <br />
+            <br />
+            Die beiden Zahlen, "15 8", in der zweiten Zeile beschreiben die
+            Aufteilung der Pixel in Spalten und Zeilen (hier 15 Spalten und 8
+            Zeilen). <br />
+            <br />
+            In den folgenden Zeilen werden die einzelnen Bits zur Darstellung
+            der Farbwerte dargestellt. Diese sind hier - der besseren Lesbarkeit
+            wegen - bereits im Quellcode genauso angeordnet wie in der
+            beabsichtigten Bilddarstellung. Eine solche Anordnung ist aber nicht
+            erforderlich. Man k&ouml;nnte z. B. alle Nullen und Einsen in eine
+            einzige Zeile schreiben oder auch jede dieser Zahler in eine neue
+            Zeile.
+          </p>
+        </div>
+      </section>
+
+      <img
+        class="spacer"
+        src="img/spacer/after-section-primary-dark.svg"
+        alt=""
+      />
+
+      <section class="section-secondary" id="Portable_GrayMap">
+        <h2 class="tertiary-fade heading-right">Portable GrayMap</h2>
+        <div class="grid">
+          <p class="item item-long-horizontal">
+            Die Portable GrayMap (kurz PGM) erweitert die PBM so, dass diese nun
+            auch Graustufen darstellen kann.
+          </p>
+          <div class="item item-left flex-center">
+            <svg
+              class="item item-long-horizontal"
+              id="bitmap-example-p2"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <textarea
+              readonly="true"
+              style="resize: none"
+              cols="42"
+              rows="11"
+              id="bitmap-input-example-p2"
+            >
+P2
+11 8
+255
+ 61  65  64  54  81  97  80  67  75  79  81
+ 50  57  57  91 200 233 181  73  67  84  81
+ 68  72  83 128 167 228 255 155  54  75  89
+ 72  74  83  71 127 194 240 198  54  78  90
+ 59  61  85  79 110 199 228 168  51  57  74
+ 63  79 127 104 114 192 223 100  42  37  48
+ 63 113 132 132 144 200 156  58  59  65  75
+ 62 125 111 146 169 169  55  59  62  76  90</textarea
+            >
+          </div>
+          <p class="item">
+            Die erste Zeile, "P2", kennzeichnet das PGM-Format in der
+            ASCII-Version. <br />
+            <br />
+            Die beiden Zahlen, "11 8", in der zweiten Zeile beschreiben die
+            Aufteilung der Pixel in Spalten und Zeilen (hier 11 Spalten und 8
+            Zeilen). <br />
+            <br />
+            Die Zahl "255" in der dritten Zeile beschreibt die Anzahl der
+            Graustufen - hier von Stufe 0 bis Stufe 255. Beachte, dass maximal
+            256 Graustufen festgelegt werden k&ouml;nnen. <br />
+            <br />
+            In der vierten Zeile werden die einzelnen Bits zur Darstellung der
+            Farbwerte dargestellt. Diese sind hier - der besseren Lesbarkeit
+            wegen - bereits im Quellcode genauso angeordnet wie in der
+            beabsichtigten Bilddarstellung. Eine solche Anordnung ist aber nicht
+            erforderlich. Man k&ouml;nnte z. B. alle Nullen und Einsen in eine
+            einzige Zeile schreiben oder auch jede dieser Zahler in eine neue
+            Zeile.
+          </p>
+        </div>
+      </section>
+
+      <img class="spacer" src="img/spacer/after-section-secondary.svg" alt="" />
+
+      <section class="section-primary-light" id="Farbmischung">
+        <h2 class="primary-fade">Farbmischung</h2>
+        <div class="grid">
+          <p class="item item-long-horizontal">
+            Durch additive Farbmischung kann man aus den drei Grundfarben Rot,
+            Gr&uuml;n und Blau das gesamte Farbspektrum erzeugen. Man muss nur
+            die genauen Rot- bzw. Gr&uuml;n- bzw. Blau-Anteile festlegen. Einige
+            dieser Farbmischungen sind in der folgenden Grafik verdeutlicht:
+          </p>
+          <figure class="item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/05/AdditiveColorMixing.svg"
+              alt=""
+            />
+            <figcaption>
+              Bild von
+              <a
+                href="https://commons.wikimedia.org/wiki/File:AdditiveColorMixing.svg"
+                >Wikimedia</a
+              >
+            </figcaption>
+          </figure>
+          <p class="item">
+            Die Grafik zeigt u. a., dass Rot und Gr&uuml;n gemischt die Farbe
+            Gelb ergibt und dass alle drei Grundfarben gemischt die Farbe
+            Wei&szlig; ergibt. <br />
+            <br />
+            Die Grundfarben k&ouml;nnen auch in unterschiedlichen
+            Verh&auml;ltnissen gemischt werden. Am besten, du probierst das mit
+            einem Farbmischer aus. Fast jedes Bildbearbeitungsprogramm stellt
+            einen solchen Farbmischer bereit. Du kannst dir aber auch ein
+            spezielles Programm hierzu besorgen. <br />
+            <br />
+            Unten kannst du direkt Farben mischen. Die Mischfarbe wird jeweils
+            durch ein Zahlentripel f&uuml;r den Vordergrund und f&uuml;r den
+            Hintergrund beschrieben. Jede der drei Zahlen liegt in einem
+            vorgegebenen Bereich - hier 0 bis 255 - und beschreibt den
+            jeweiligen Farbanteil.
+          </p>
+        </div>
+      </section>
+
+      <img
+        class="spacer"
+        src="img/spacer/after-section-primary-light.svg"
+        alt=""
+      />
+
+      <section class="section-tertiary" id="Portable_PixMap">
+        <h2 class="secondary-fade heading-right">Portable PixMap</h2>
+        <div class="grid">
+          <p class="item item-long-horizontal">
+            Die Portable PixMap (kurz PPM) nutzt die additive Farbmischung aus,
+            um mehr als nur Graustufen darstellen zu k&ouml;nnen.
+          </p>
+          <div class="item item-left flex-center">
+            <svg
+              class="item item-long-horizontal"
+              id="bitmap-example-p3"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <textarea
+              readonly="true"
+              style="resize: none"
+              cols="36"
+              rows="7"
+              id="bitmap-input-example-p3"
+            >
+P3
+3 4
+255
+  0   0   0    0   0   0    0   0   0
+255 255 255  255 255 255  255 255 255
+  0   0 255    0 255   0  255   0   0
+255 255   0  255   0 255    0 255 255</textarea
+            >
+          </div>
+          <p class="item">
+            Die erste Zeile, "P3", kennzeichnet das PPM-Format in der
+            ASCII-Version. <br />
+            <br />
+            Die beiden Zahlen, "3 4", in der zweiten Zeile beschreiben die
+            Aufteilung der Pixel in Spalten und Zeilen (hier 3 Spalten und 4
+            Zeilen). <br />
+            <br />
+            Die Zahl "255" in der dritten Zeile beschreibt die Anzahl der
+            Farbanteilen. <br />
+            <br />
+            In den folgenden Zeilen werden die einzelnen Farben mit Hilfe von
+            Zahlentripeln dargestellt. Diese sind hier - der besseren Lesbarkeit
+            wegen - bereits im Quelltext genauso angeordnet wie in der
+            beabsichtigten Bilddarstellung. Eine solche Anordnung ist aber nicht
+            erforderlich. Man k&ouml;nnte z.B. alle Zahlen in eine einzige Zeile
+            schreiben oder auch jede dieser Zahlen in eine neue Zeile.
+          </p>
+        </div>
+      </section>
+
+      <img class="spacer" src="img/spacer/after-section-tertiary.svg" alt="" />
+
+      <section class="section-primary-dark">
+        <h2 class="primary-fade">Aufgaben</h2>
+        <div class="grid">
+          <svg
+            class="item item-long-horizontal no-background"
+            id="bitmap-interactive"
+            xmlns="http://www.w3.org/2000/svg"
+          ></svg>
+          <form class="item item-long-horizontal">
+            <label for="bitmap-input"
+              >Hier könnt ihr es austesten, eine Bitmap-Datei zu
+              schreiben:</label
+            >
+            <div class="flex-center">
+              <textarea
+                cols="50"
+                rows="12"
+                id="bitmap-input-interactive"
+              ></textarea>
+              <button type="button" id="bitmap-button" class="button">
+                Eingabe anzeigen
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <img
+        class="spacer"
+        src="img/spacer/after-section-primary-dark.svg"
+        alt=""
+      />
+
+      <section class="section-secondary" id="Quellen">
+        <h2 class="tertiary-fade heading-right">Quellen</h2>
+        <dl class="item">
+          <dt>Hero Image</dt>
+          <dd>
+            Bild von
+            <a href="https://libreshot.com/about-libreshot/">Martin Vorel</a>
+            auf
+            <a href="https://libreshot.com/binary-code-2/">LibreShot</a>
+            | leicht verändert
+          </dd>
+
+          <dt>Inhalt</dt>
+          <dd>
+            <a
+              href="https://www.inf-schule.de/information/darstellunginformation/binaerdarstellungbilder"
+              >Binärdarstellung von Bildern (Inf-Schule)</a
+            >
+          </dd>
+        </dl>
+      </section>
+
+      <footer>
+        <nav>
+          <a href="index.html">Startseite</a>
+          <a href="impressum.html">Impressum</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>
